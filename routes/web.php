@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\IntegrationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/integrate/google', [IntegrationController::class, 'integrateGoogle'])->name('integrate.google');
+Route::get('/google/Callback', [IntegrationController::class, 'googleAuth']);
+
+Route::get('/sites', [AnalyticsController::class, 'getListSites'])->name('list.sites');
+Route::get('/search-analytics', [AnalyticsController::class, 'searchAnalytics'])->name('search.analytics');
